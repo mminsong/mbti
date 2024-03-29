@@ -1,5 +1,6 @@
 const main = document.querySelector("#main");
 const qna = document.querySelector("#qna");
+const endPoint = 12;
 
 //Q&A 페이지의 answer 버튼
 function addAnswer(answerText, qIdx) {
@@ -21,8 +22,8 @@ function addAnswer(answerText, qIdx) {
       for (let i = 0; i < children.length; i++) {
         //qnaList에서 a row의 key, value
         children[i].disabled = true;
-        children[i].style.WebkitAnimation = "fadeOut 1s";
-        children[i].style.animation = "fadeOut 1s";
+        children[i].style.WebkitAnimation = "fadeOut 0.5s";
+        children[i].style.animation = "fadeOut 0.5s";
       }
       setTimeout(() => {
         for (let i = 0; i < children.length; i++) {
@@ -30,7 +31,7 @@ function addAnswer(answerText, qIdx) {
           children[i].style.display = "none";
         }
         goNext(++qIdx);
-      }, 950);
+      }, 450);
     },
     false
   );
@@ -43,6 +44,8 @@ function goNext(qIdx) {
   for (let i in qnaList[qIdx].a) {
     addAnswer(qnaList[qIdx].a[i].answer, qIdx);
   }
+  var status = document.querySelector(".statusBar");
+  status.style.width = (100 / endPoint) * (qIdx + 1) + "%";
 }
 
 //Main 페이지에서 '시작하기' 버튼 눌렀을 때 화면이 천천히 전환되게
