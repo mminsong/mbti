@@ -1,16 +1,31 @@
 const main = document.querySelector("#main");
 const qna = document.querySelector("#qna");
 
-function addAnser() {
+function addAnswer(answerText, qIdx) {
   var a = document.querySelector(".answerBox");
   var answer = document.createElement("Button");
+  answer.classList.add("answerList");
+  a.appendChild(answer);
+  answer.innerHTML = answerText;
+  answer.addEventListener(
+    "click",
+    () => {
+      var children = document.querySelectorAll(".answerList");
+      for (let i = 0; i < children.length; i++) {
+        children[i].disabled = true;
+        children[i].style.display = "none";
+      }
+      goNext(++qIdx);
+    },
+    false
+  );
 }
 
 function goNext(qIdx) {
   var q = document.querySelector(".qBox");
   q.innerHTML = qnaList[qIdx].q;
   for (let i in qnaList[qIdx].a) {
-    addAnswer();
+    addAnswer(qnaList[qIdx].a[i].answer, qIdx);
   }
 }
 function begin() {
@@ -24,7 +39,6 @@ function begin() {
       qna.style.display = "block";
     }, 450);
     let qIdx = 0;
-    let aIdx = 0;
     goNext(qIdx);
   }, 450);
 }
