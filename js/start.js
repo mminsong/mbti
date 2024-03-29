@@ -1,23 +1,36 @@
 const main = document.querySelector("#main");
 const qna = document.querySelector("#qna");
 
-//
+//Q&A 페이지의 answer 버튼
 function addAnswer(answerText, qIdx) {
   var a = document.querySelector(".answerBox");
   var answer = document.createElement("Button");
   answer.classList.add("answerList");
+  answer.classList.add("my-3");
+  answer.classList.add("py-3");
+  answer.classList.add("mx-auto");
+  answer.classList.add("fadeIn");
+
   a.appendChild(answer);
   answer.innerHTML = answerText;
+
   answer.addEventListener(
     "click",
-    () => {
+    function () {
       var children = document.querySelectorAll(".answerList");
       for (let i = 0; i < children.length; i++) {
         //qnaList에서 a row의 key, value
         children[i].disabled = true;
-        children[i].style.display = "none";
+        children[i].style.WebkitAnimation = "fadeOut 1s";
+        children[i].style.animation = "fadeOut 1s";
       }
-      goNext(++qIdx);
+      setTimeout(() => {
+        for (let i = 0; i < children.length; i++) {
+          //qnaList에서 a row의 key, value
+          children[i].style.display = "none";
+        }
+        goNext(++qIdx);
+      }, 950);
     },
     false
   );
