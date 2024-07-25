@@ -24,9 +24,24 @@
   border: 0px;
   border-radius: 20px;
 }
+
 .kakao:hover,
 .kakao:focus {
   background-color: #fee500;
+  color: whitesmoke;
+  font: 24px;
+}
+
+.gohome {
+  color: white;
+  background-color: pink;
+  font-size: 20px;
+  border: 0px;
+  border-radius: 20px;
+}
+.gohome:hover,
+.kakao:focus {
+  background-color: pink;
   color: whitesmoke;
   font: 24px;
 }
